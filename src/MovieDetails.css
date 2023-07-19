@@ -1,0 +1,19 @@
+.information-container {
+  color: white;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.trailer-container {
+  display: flex;
+  justify-content: center;
+}
+.movie-detail-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+img {
+  width: 200px;
+  height: 400px;
+  object-fit: cover;
+}

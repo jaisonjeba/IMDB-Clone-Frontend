@@ -1,0 +1,26 @@
+.navbar-container {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px;
+  background-color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.navbar-container img {
+  object-fit: cover;
+  width: 80px;
+  height: 40px;
+}
+.actions-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.actions-container:hover div {
+  color: gold;
+  cursor: pointer;
+}
