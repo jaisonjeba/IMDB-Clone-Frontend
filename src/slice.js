@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const baseUrl = "http://localhost:4000";
+const baseUrl = "https://imdbclone2.onrender.com";
 
 const initialState = {
   moviesList: [],
