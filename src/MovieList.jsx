@@ -8,6 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import AddIcon from "@mui/icons-material/Add";
 import DoneIcon from "@mui/icons-material/Done";
 import { useNavigate } from "react-router-dom";
+import ArrowForwardIosRoundedIcon from "@mui/icons-material/ArrowForwardIosRounded";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export const MovieList = () => {
   const { moviesList, isLoading } = useSelector((state) => state.movies);
@@ -18,37 +20,52 @@ export const MovieList = () => {
     dispatch(getMovieFromserver());
   }, [dispatch]);
   return (
-    <div className="movelist-container">
-      {isLoading ? "Loading" : ""}
-      {moviesList &&
-        moviesList.map((movie) => (
-          <div key={movie._id} className="movie-card">
-            <img src={movie.image} alt={movie.name} />
-            <div className="card-content">
-              <div>⭐ {movie.rating}</div>
-              <h3>{movie.name}</h3>
-              <div className="watchlist" onClick={() => setchange(!change)}>
-                {change ? <AddIcon /> : <DoneIcon />}
-                WatchList
-              </div>
-              <div className="card-action">
-                <div
-                  className="trailer-btn"
-                  onClick={() => navigate(`/movies/${movie._id}`)}
-                >
-                  <PlayArrowRoundedIcon />
-                  Trailer
+    <div>
+      {isLoading ? (
+        <LinearProgress />
+      ) : (
+        <div className="main-container">
+          <h1>What to watch</h1>
+          <h2 className="topic-picks">
+            Top Picks <ArrowForwardIosRoundedIcon style={{ color: "white" }} />
+          </h2>
+          <p>TV shows and movies just for you</p>
+          <div className="movielist-container">
+            {moviesList &&
+              moviesList.map((movie) => (
+                <div key={movie._id} className="movie-card">
+                  <img src={movie.image} alt={movie.name} />
+                  <div className="card-content">
+                    <div>⭐ {movie.rating}</div>
+                    <h3>{movie.name}</h3>
+                    <div
+                      className="watchlist"
+                      onClick={() => setchange(!change)}
+                    >
+                      {change ? <AddIcon /> : <DoneIcon />}
+                      WatchList
+                    </div>
+                    <div className="card-action">
+                      <div
+                        className="trailer-btn"
+                        onClick={() => navigate(`/movies/${movie._id}`)}
+                      >
+                        <PlayArrowRoundedIcon />
+                        Trailer
+                      </div>
+                      <IconButton
+                        onClick={() => navigate(`edit/${movie._id}`)}
+                        style={{ color: "white" }}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </div>
+                  </div>
                 </div>
-                <IconButton
-                  onClick={() => navigate(`edit/${movie._id}`)}
-                  style={{ color: "white" }}
-                >
-                  <EditIcon />
-                </IconButton>
-              </div>
-            </div>
+              ))}
           </div>
-        ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviebyid, updateMoviebyId } from "./slice";
 import "./EditMovies.css";
+import LinearProgress from "@mui/material/LinearProgress";
+import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 
 const formValidationSchema = yup.object({
   name: yup.string().required(),
@@ -30,7 +32,9 @@ export function EditMovie() {
   }, [dispatch, id]);
   const { isLoading, selectedMovie } = useSelector((state) => state.movies);
   return (
-    <div>{isLoading ? "Loading" : selectedMovie && <EditMovieForm />}</div>
+    <div>
+      {isLoading ? <LinearProgress /> : selectedMovie && <EditMovieForm />}
+    </div>
   );
 }
 
@@ -69,143 +73,167 @@ function EditMovieForm() {
     });
 
   return (
-    <div className="edit-movie-container">
-      <form onSubmit={handleSubmit} className="edit-movie-form">
-        <TextField
-          name="name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.name}
-          placeholder="Enter Movie Name"
-          variant="outlined"
-          label="Movie Name"
+    <div>
+      <div className="edit-movie-header">
+        <Button
+          variant="contained"
+          color="secondary"
           size="small"
-          helperText={touched.name && errors.name ? errors.name : null}
-        />
-        <TextField
-          name="release_date"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.release_date}
-          placeholder="Enter release Date"
-          variant="outlined"
-          label="Release Date"
-          size="small"
-          helperText={
-            touched.release_date && errors.release_date
-              ? errors.release_date
-              : null
-          }
-        />
-        <TextField
-          name="producer"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.producer}
-          placeholder="producer name"
-          variant="outlined"
-          label="producer Name"
-          size="small"
-          helperText={
-            touched.producer && errors.producer ? errors.producer : null
-          }
-        />
-        <TextField
-          name="director"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.director}
-          placeholder="Enter director name"
-          variant="outlined"
-          label="producer Name"
-          size="small"
-          helperText={
-            touched.director && errors.director ? errors.director : null
-          }
-        />
-        <TextField
-          name="hero"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.hero}
-          placeholder="Enter Hero Name"
-          variant="outlined"
-          label="Hero Name"
-          size="small"
-          helperText={touched.hero && errors.hero ? errors.hero : null}
-        />
-        <TextField
-          name="Heroine"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.heroine}
-          placeholder="Enter Heroine Name"
-          variant="outlined"
-          label="Heroine Name"
-          size="small"
-          helperText={touched.heroine && errors.heroine ? errors.heroine : null}
-        />
-        <TextField
-          name="villian"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.villian}
-          placeholder="Enter villian Name"
-          variant="outlined"
-          label="villian Name"
-          size="small"
-          helperText={touched.villian && errors.villian ? errors.villian : null}
-        />
-        <TextField
-          name="image"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.image}
-          variant="outlined"
-          label="Poster"
-          placeholder="paste Image Address"
-          size="small"
-          helperText={touched.image && errors.image ? errors.image : null}
-        />
-
-        <TextField
-          name="rating"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.rating}
-          variant="outlined"
-          label="Rating"
-          placeholder="Give Rating"
-          size="small"
-          helperText={touched.rating && errors.rating ? errors.rating : null}
-        />
-
-        <TextField
-          name="description"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.description}
-          variant="outlined"
-          label="Summary"
-          placeholder="Add Summary"
-          size="small"
-        />
-        {touched.description && errors.description ? errors.description : null}
-        <TextField
-          name="trailer"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={values.trailer}
-          variant="outlined"
-          label="Trailer Link"
-          placeholder="paste Trailer Link"
-          size="small"
-          helperText={touched.trailer && errors.trailer ? errors.trailer : null}
-        />
-        <Button color="success" variant="contained" type="submit">
-          Update
+          onClick={() => navigate(-1)}
+          startIcon={<KeyboardBackspaceIcon fontSize="small" />}
+        >
+          Back
         </Button>
-      </form>
+
+        <h2>Edit Movie</h2>
+      </div>
+
+      <div className="edit-movie-container">
+        <form onSubmit={handleSubmit} className="edit-movie-form">
+          <TextField
+            name="name"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.name}
+            placeholder="Enter Movie Name"
+            variant="outlined"
+            label="Movie Name"
+            size="small"
+            helperText={touched.name && errors.name ? errors.name : null}
+          />
+          <TextField
+            name="release_date"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.release_date}
+            placeholder="Enter release Date"
+            variant="outlined"
+            label="Release Date"
+            size="small"
+            helperText={
+              touched.release_date && errors.release_date
+                ? errors.release_date
+                : null
+            }
+          />
+          <TextField
+            name="producer"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.producer}
+            placeholder="producer name"
+            variant="outlined"
+            label="producer Name"
+            size="small"
+            helperText={
+              touched.producer && errors.producer ? errors.producer : null
+            }
+          />
+          <TextField
+            name="director"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.director}
+            placeholder="Enter director name"
+            variant="outlined"
+            label="producer Name"
+            size="small"
+            helperText={
+              touched.director && errors.director ? errors.director : null
+            }
+          />
+          <TextField
+            name="hero"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.hero}
+            placeholder="Enter Hero Name"
+            variant="outlined"
+            label="Hero Name"
+            size="small"
+            helperText={touched.hero && errors.hero ? errors.hero : null}
+          />
+          <TextField
+            name="heroine"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.heroine}
+            placeholder="Enter Heroine Name"
+            variant="outlined"
+            label="Heroine Name"
+            size="small"
+            helperText={
+              touched.heroine && errors.heroine ? errors.heroine : null
+            }
+          />
+          <TextField
+            name="villian"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.villian}
+            placeholder="Enter villian Name"
+            variant="outlined"
+            label="villian Name"
+            size="small"
+            helperText={
+              touched.villian && errors.villian ? errors.villian : null
+            }
+          />
+          <TextField
+            name="image"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.image}
+            variant="outlined"
+            label="Poster"
+            placeholder="paste Image Address"
+            size="small"
+            helperText={touched.image && errors.image ? errors.image : null}
+          />
+
+          <TextField
+            name="rating"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.rating}
+            variant="outlined"
+            label="Rating"
+            placeholder="Give Rating"
+            size="small"
+            helperText={touched.rating && errors.rating ? errors.rating : null}
+          />
+
+          <TextField
+            name="description"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.description}
+            variant="outlined"
+            label="Summary"
+            placeholder="Add Summary"
+            size="small"
+          />
+          {touched.description && errors.description
+            ? errors.description
+            : null}
+          <TextField
+            name="trailer"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            value={values.trailer}
+            variant="outlined"
+            label="Trailer Link"
+            placeholder="paste Trailer Link"
+            size="small"
+            helperText={
+              touched.trailer && errors.trailer ? errors.trailer : null
+            }
+          />
+          <Button color="success" variant="contained" type="submit">
+            Update
+          </Button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -17,3 +17,30 @@ img {
   height: 400px;
   object-fit: cover;
 }
+.information-container Button {
+  margin: 5px 0px 5px 0px;
+}
+@media screen and (max-width: 768px) {
+  .movie-detail-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .trailer {
+    width: 370px;
+    height: 250px;
+  }
+  .information-container {
+    margin-top: 10px;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+  }
+}
